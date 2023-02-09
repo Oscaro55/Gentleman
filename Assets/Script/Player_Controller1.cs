@@ -8,19 +8,16 @@ public class Player_Controller1 : MonoBehaviour
     public Rigidbody rb;
     public float _Speed;
     public float _RotaSpeed;
-    public Transform _snapPoint;
-    public Vector3 _lookAtPoint;
-    Animator _animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void FixedUpdate()
@@ -59,24 +56,6 @@ public class Player_Controller1 : MonoBehaviour
 
     public void EnterByWindows()
     {
-
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Fenetre"))
-        {
-            if (Input.GetAxis("Fire1") > 0)
-            {
-                JumpThroughWindow();
-            }
-        }
-    }
-
-    IEnumerator JumpThroughWindow()
-    {
-        gameObject.transform.position = _snapPoint.transform.position;
-        gameObject.transform.LookAt(_lookAtPoint);
-        yield return new WaitForSeconds(1f);
 
     }
 }
