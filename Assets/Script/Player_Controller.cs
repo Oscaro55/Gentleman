@@ -9,6 +9,7 @@ public class Player_Controller : MonoBehaviour
     public float _Speed;
     public float _RotaSpeed;
     public bool Grounded;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,11 @@ public class Player_Controller : MonoBehaviour
         GatherInputs();
         Look();
         GroundDetection();
+        if (Input.GetAxisRaw("Horizontal") > 0.2f || Input.GetAxisRaw("Vertical") > 0.2f || Input.GetAxisRaw("Horizontal") < -0.2f || Input.GetAxisRaw("Vertical") < -0.2f)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else anim.SetBool("Walking", false);
     }
 
     void GatherInputs()
