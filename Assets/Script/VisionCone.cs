@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class VisionCone : MonoBehaviour
 {
+    private Player_Controller player;
     public Material VisionConeMaterial;
     public float VisionRange;
     public float VisionAngle;
@@ -12,10 +13,12 @@ public class VisionCone : MonoBehaviour
     public int VisionConeResolution;//the vision cone will be made up of triangles, the higher this value is the pretier the vision cone will be
     Mesh VisionConeMesh;
     MeshFilter MeshFilter_;
+    public float unDetect; 
     //Create all of these variables, most of them are self explanatory, but for the ones that aren't i've added a comment to clue you in on what they do
     //for the ones that you dont understand dont worry, just follow along
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player_Controller>();
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
         VisionConeMesh = new Mesh();
@@ -26,6 +29,8 @@ public class VisionCone : MonoBehaviour
     void Update()
     {
         DrawVisionCone();//calling the vision cone function everyframe just so the cone is updated every frame
+        if (unDetect > 0) unDetect -= Time.deltaTime;
+        if (unDetect <= 0) player._detected = false;
     }
 
     void DrawVisionCone()//this method creates the vision cone mesh
@@ -46,7 +51,17 @@ public class VisionCone : MonoBehaviour
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
             if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
             {
-                Vertices[i + 1] = VertForward * hit.distance;
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Vertices[i + 1] = VertForward * VisionRange;
+                    print("Detected");
+                    player._detected = true;
+                    unDetect = 0.1f;
+                }
+                else
+                {
+                    Vertices[i + 1] = VertForward * hit.distance;
+                }
             }
             else
             {
