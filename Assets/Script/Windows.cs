@@ -50,14 +50,4 @@ public class Windows : MonoBehaviour
         }
 
     }
-
-    IEnumerator JumpThroughWindow()
-    {
-        print("done");
-        _player._animator.Play("Armature|Jump_ascent");
-        yield return new WaitForSeconds(1f);
-        _player._animator.Play("Armature|Jump_descent");
-
-
-    }
 }

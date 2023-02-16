@@ -2003,7 +2003,6 @@ MonoBehaviour:
   rb: {fileID: 6570028994827375083}
   _Speed: 4
   _RotaSpeed: 900
-  _animator: {fileID: 1904140628}
 --- !u!137 &6827139033463925472
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
