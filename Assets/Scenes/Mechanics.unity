@@ -431,7 +431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147340038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00937, y: 0.00741, z: 0.0095}
+  m_LocalPosition: {x: 0.0071, y: 0.0629, z: 0.0095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &220825229
 Transform:
   m_ObjectHideFlags: 0
@@ -591,7 +591,7 @@ MeshCollider:
   m_GameObject: {fileID: 851973078}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -944,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1765434265
 Transform:
   m_ObjectHideFlags: 0
@@ -1553,8 +1553,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.019999996, y: 0.011351907, z: 0.019999996}
-  m_Center: {x: -0.009999997, y: -0.0045345263, z: 0.009999999}
+  m_Size: {x: 0.028958712, y: 0.0034449028, z: 0.019999996}
+  m_Center: {x: -0.010107994, y: 0.007838253, z: 0.009999999}
 --- !u!114 &3469287837105577693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,9 +1568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 6570028994827375085}
-  PressA: {fileID: 84618208}
-  _snapPoint: {fileID: 220825229}
-  _lookAtPoint: {x: 0, y: 0, z: 0}
   _FinalJumpStatePoint: {fileID: 147340039}
 --- !u!1 &3621870918599007274
 GameObject:
@@ -1970,8 +1967,8 @@ Rigidbody:
   m_GameObject: {fileID: 6570028994827375082}
   serializedVersion: 2
   m_Mass: 2
-  m_Drag: 10
-  m_AngularDrag: 10
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2004,8 +2001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6570028994827375083}
-  _Speed: 6
-  _RotaSpeed: 700
+  _Speed: 4
+  _RotaSpeed: 900
   _animator: {fileID: 1904140628}
 --- !u!137 &6827139033463925472
 SkinnedMeshRenderer:
