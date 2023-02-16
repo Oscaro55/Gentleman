@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Windows : MonoBehaviour
@@ -29,18 +30,29 @@ public class Windows : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PressA.SetActive(true);
+
             if (Input.GetAxis("Fire1") > 0)
             {
                 _player.transform.position = _snapPoint.transform.position;
                 _player.transform.LookAt(_lookAtPoint);
 
-                float distCovered = (Time.time - _startTime) * _player._Speed;
+                float distCovered = 5 * _player._Speed;//(Time.time - _startTime) * _player._Speed;
 
                 float fractionOfJourney = distCovered / _journeyLength;
 
-                transform.position = Vector3.Lerp(_snapPoint.position, _FinalJumpStatePoint.position, fractionOfJourney);
+                _player.transform.position = Vector3.Lerp(_snapPoint.localPosition, _FinalJumpStatePoint.position, fractionOfJourney);
             }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            PressA.SetActive(false);
+        }
+
     }
 
     IEnumerator JumpThroughWindow()
