@@ -10,7 +10,6 @@ public class Windows : MonoBehaviour
     public Transform _snapPoint;
     public Vector3 _lookAtPoint;
     public Transform _FinalJumpStatePoint;
-    Animator _animator;
 
     float _startTime;
     float _journeyLength;
@@ -37,11 +36,8 @@ public class Windows : MonoBehaviour
                 _player.transform.position = _snapPoint.transform.position;
                 _player.transform.LookAt(_lookAtPoint);
 
-                float distCovered = 5 * _player._Speed;//(Time.time - _startTime) * _player._Speed;
 
-                float fractionOfJourney = distCovered / _journeyLength;
-
-                _player.transform.position = Vector3.Lerp(_snapPoint.localPosition, _FinalJumpStatePoint.position, fractionOfJourney);
+                _player.transform.position = _FinalJumpStatePoint.transform.position;
             }
         }
     }
@@ -58,9 +54,9 @@ public class Windows : MonoBehaviour
     IEnumerator JumpThroughWindow()
     {
         print("done");
-        _animator.Play("Armature|Jump_ascent");
+        _player._animator.Play("Armature|Jump_ascent");
         yield return new WaitForSeconds(1f);
-        _animator.Play("Armature|Jump_descent");
+        _player._animator.Play("Armature|Jump_descent");
 
 
     }
