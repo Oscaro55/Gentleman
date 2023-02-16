@@ -6,9 +6,9 @@ using UnityEngine;
 public class Windows : MonoBehaviour
 {
     public Player_Controller1 _player;
-    public GameObject PressA;
-    public Transform _snapPoint;
-    public Vector3 _lookAtPoint;
+    //public GameObject PressA;
+    //public Transform _snapPoint;
+    //public Vector3 _lookAtPoint;
     public Transform _FinalJumpStatePoint;
 
     float _startTime;
@@ -16,8 +16,8 @@ public class Windows : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _startTime = Time.time;
-        _journeyLength = Vector3.Distance(_snapPoint.position, _FinalJumpStatePoint.position);
+        //_startTime = Time.time;
+        //_journeyLength = Vector3.Distance(_snapPoint.position, _FinalJumpStatePoint.position);
     }
 
     // Update is called once per frame
@@ -29,16 +29,16 @@ public class Windows : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PressA.SetActive(true);
+            //PressA.SetActive(true);
+            _player.transform.position = _FinalJumpStatePoint.transform.position;
 
-            if (Input.GetAxis("Fire1") > 0)
+            /*if (Input.GetAxis("Fire1") > 0)
             {
                 _player.transform.position = _snapPoint.transform.position;
                 _player.transform.LookAt(_lookAtPoint);
 
 
-                _player.transform.position = _FinalJumpStatePoint.transform.position;
-            }
+            }*/
         }
     }
     private void OnTriggerExit(Collider other)
@@ -46,18 +46,8 @@ public class Windows : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            PressA.SetActive(false);
+            //PressA.SetActive(false);
         }
-
-    }
-
-    IEnumerator JumpThroughWindow()
-    {
-        print("done");
-        _player._animator.Play("Armature|Jump_ascent");
-        yield return new WaitForSeconds(1f);
-        _player._animator.Play("Armature|Jump_descent");
-
 
     }
 }

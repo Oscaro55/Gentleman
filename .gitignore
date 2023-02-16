@@ -58,3 +58,36 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/light_anim_1.anim
+Assets/LightsTest1.lighting
+Assets/LightsTest1.lighting.meta
+Assets/Mat.mat
+Assets/Mat.mat.meta
+Assets/Materials/M_Trimsheet.mat
+Assets/Materials/Mat.mat
+Assets/Materials/New Material.mat
+Assets/Materials/New Material.mat.meta
+Assets/Materials/Test_Detection.mat
+Assets/Meshes/RoofFloor.fbx
+Assets/Player/Gentleman.controller
+Assets/Scenes/Juline.unity
+Assets/Scenes/Lighting tests.meta
+Assets/Scenes/Lighting tests.unity
+Assets/Scenes/Lighting tests.unity.meta
+Assets/Scenes/Lighting tests/Global Volume Profile.asset
+Assets/Scenes/Lighting tests/Global Volume Profile.asset.meta
+Assets/Scenes/Mechanics.unity
+Assets/Script/Player_Controller.cs
+Assets/Script/Player_Controller1.cs
+Assets/Script/VisionCone.cs
+Assets/Script/Windows.cs
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/BurstAotSettings_StandaloneWindows.json
+ProjectSettings/CommonBurstAotSettings.json
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/TagManager.asset
+UserSettings/EditorUserSettings.asset
+UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+UserSettings/Layouts/default-2021.dwlt
