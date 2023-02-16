@@ -9,7 +9,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
+<<<<<<< HEAD
   - Character
+=======
+  - Player
+>>>>>>> 43592c9fe1ac226b05915626155a3dc65307a216
   - Water
   - UI
   - 
