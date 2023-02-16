@@ -37,9 +37,10 @@ public class Player_Controller : MonoBehaviour
 
         GroundDetection();
 
-        if (Input.GetAxisRaw("Horizontal") > 0.2f || Input.GetAxisRaw("Vertical") > 0.2f || Input.GetAxisRaw("Horizontal") < -0.2f || Input.GetAxisRaw("Vertical") < -0.2f)
+        if (_input.magnitude > 0.3f)
         {
             anim.SetBool("Walking", true);
+            anim.speed = _input.magnitude + 0.1f;
         }
         else anim.SetBool("Walking", false);
 
@@ -48,7 +49,7 @@ public class Player_Controller : MonoBehaviour
 
     void GatherInputs()
     {
-        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        if (_input.magnitude > 0.3f) _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 
     void Move()
