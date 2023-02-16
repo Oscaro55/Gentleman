@@ -13,7 +13,7 @@ public class Player_Controller : MonoBehaviour
     public bool _detected;
     private float _detection;
     private bool _dead;
-    public Material mat;
+    public SpriteRenderer rend;
     public float _DetectionRate;
     // Start is called before the first frame update
     void Start()
@@ -37,9 +37,11 @@ public class Player_Controller : MonoBehaviour
 
         GroundDetection();
 
-        if (Input.GetAxisRaw("Horizontal") > 0.2f || Input.GetAxisRaw("Vertical") > 0.2f || Input.GetAxisRaw("Horizontal") < -0.2f || Input.GetAxisRaw("Vertical") < -0.2f)
+
+        if (_input.magnitude > 0.3f)
         {
             anim.SetBool("Walking", true);
+            anim.speed = _input.magnitude +0.1f;
         }
         else anim.SetBool("Walking", false);
 
@@ -53,7 +55,7 @@ public class Player_Controller : MonoBehaviour
 
     void Move()
     {
-        rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _Speed * Time.deltaTime);
+        if (_input.magnitude > 0.3f) rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _Speed * Time.deltaTime);
     }
 
     void Look()
@@ -90,17 +92,17 @@ public class Player_Controller : MonoBehaviour
         if (_detected)
         {
             if (_detection < 1) _detection += Time.fixedDeltaTime * _DetectionRate; 
-            Color color = mat.color;
+            Color color = rend.color;
             color.a = _detection;
-            mat.color = color;
+            rend.color = color;
         }
 
         if (!_detected)
         {
             if (_detection > 0) _detection -= Time.fixedDeltaTime;
-            Color color = mat.color;
+            Color color = rend.color;
             color.a = _detection;
-            mat.color = color;
+            rend.color = color;
         }
 
         if (_detection >= 1)
