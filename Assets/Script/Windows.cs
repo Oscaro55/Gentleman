@@ -29,17 +29,17 @@ public class Windows : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetAxis("Fire1") > 0)
+            _player.transform.position = _FinalJumpStatePoint.transform.position;
+            /*if (Input.GetAxis("Fire1") > 0)
             {
-                //_player.transform.position = _snapPoint.transform.position;
-                //_player.transform.LookAt(_lookAtPoint);
-                //
-                //float distCovered = (Time.time - _startTime) * _player._Speed;
-                //
-                //float fractionOfJourney = distCovered / _journeyLength;
+                _player.transform.position = _snapPoint.transform.position;
+                _player.transform.LookAt(_lookAtPoint);
+                
+                float distCovered = (Time.time - _startTime) * _player._Speed;
+                
+                float fractionOfJourney = distCovered / _journeyLength;
 
-                _player.transform.position = _FinalJumpStatePoint.transform.position;
-            }
+            }*/
         }
     }
 
