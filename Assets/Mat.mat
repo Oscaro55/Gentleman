@@ -113,6 +113,9 @@ Material:
 =======
     - _BaseColor: {r: 1, g: 0.9716905, b: 0.24999994, a: 0.4117647}
     - _Color: {r: 1, g: 0.9716905, b: 0.24999991, a: 0.4117647}
+<<<<<<< HEAD:Assets/Mat.mat
+>>>>>>> parent of 26b0354 (Avancée LD):Assets/Materials/Mat.mat
+=======
 >>>>>>> parent of 26b0354 (Avancée LD):Assets/Materials/Mat.mat
     - _EmissionColor: {r: 1, g: 0.9137255, b: 0.06666667, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
