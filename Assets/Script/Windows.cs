@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Windows : MonoBehaviour
 {
-    public Player_Controller1 _player;
+    public Player_Controller _player;
     //public GameObject PressA;
     //public Transform _snapPoint;
     //public Vector3 _lookAtPoint;
