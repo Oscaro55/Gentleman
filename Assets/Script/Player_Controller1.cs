@@ -7,6 +7,7 @@ public class Player_Controller1 : MonoBehaviour
     private Vector3 _input;
     public Rigidbody rb;
     public float _Speed;
+    Animator _animator;
     public float _RotaSpeed;
 
     // Start is called before the first frame update
