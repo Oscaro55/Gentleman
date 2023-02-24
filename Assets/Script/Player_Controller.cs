@@ -15,6 +15,8 @@ public class Player_Controller : MonoBehaviour
     private bool _dead;
     public Material mat;
     public float _DetectionRate;
+    public GameObject eye;
+    private bool once;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,24 +94,32 @@ public class Player_Controller : MonoBehaviour
         {
             if (_detection < 1) _detection += Time.fixedDeltaTime * _DetectionRate;
             mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
-            /*Color color = mat.color;
-            color.a = _detection;
-            mat.color = color;*/
+            eye.SetActive(true);
+            once = true;
         }
 
         if (!_detected)
         {
-            if (_detection > 0) _detection -= Time.fixedDeltaTime;
+            if (_detection > 0) _detection -= Time.fixedDeltaTime/2;
             mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
-            /*Color color = mat.color;
-            color.a = _detection;
-            mat.color = color;*/
+            if (once)
+            {
+                StartCoroutine(DetectionUIDelay());
+                once = false;
+            }
+
         }
 
         if (_detection >= 1)
         {
             _dead = true;
         }
+    }
+
+    IEnumerator DetectionUIDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        eye.SetActive(false);
     }
 
 }

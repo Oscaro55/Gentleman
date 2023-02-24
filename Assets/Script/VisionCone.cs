@@ -56,7 +56,7 @@ public class VisionCone : MonoBehaviour
                     Vertices[i + 1] = VertForward * VisionRange;
                     print("Detected");
                     player._detected = true;
-                    unDetect = 0.1f;
+                    unDetect = 0.05f;
                 }
                 else
                 {
