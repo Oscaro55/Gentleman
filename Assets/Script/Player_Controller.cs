@@ -49,12 +49,12 @@ public class Player_Controller : MonoBehaviour
 
     void GatherInputs()
     {
-        if (_input.magnitude > 0.3f) _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+         _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 
     void Move()
     {
-        rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _Speed * Time.deltaTime);
+        if (_input.magnitude > 0.3f) rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _Speed * Time.deltaTime);
     }
 
     void Look()
@@ -90,18 +90,20 @@ public class Player_Controller : MonoBehaviour
     {
         if (_detected)
         {
-            if (_detection < 1) _detection += Time.fixedDeltaTime * _DetectionRate; 
-            Color color = mat.color;
+            if (_detection < 1) _detection += Time.fixedDeltaTime * _DetectionRate;
+            mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
+            /*Color color = mat.color;
             color.a = _detection;
-            mat.color = color;
+            mat.color = color;*/
         }
 
         if (!_detected)
         {
             if (_detection > 0) _detection -= Time.fixedDeltaTime;
-            Color color = mat.color;
+            mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
+            /*Color color = mat.color;
             color.a = _detection;
-            mat.color = color;
+            mat.color = color;*/
         }
 
         if (_detection >= 1)
