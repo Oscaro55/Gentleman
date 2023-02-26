@@ -8,7 +8,7 @@ public class Player_Controller : MonoBehaviour
     public Rigidbody rb;
     public float _Speed;
     public float _RotaSpeed;
-    public bool _Grounded;
+    private bool _Grounded;
     public Animator anim;
     public bool _detected;
     private float _detection;
@@ -16,7 +16,10 @@ public class Player_Controller : MonoBehaviour
     public Material mat;
     public float _DetectionRate;
     public GameObject eye;
+    public GameObject exclamation;
     private bool once;
+    public Transform respawn;
+    public Animator fade;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,22 +34,31 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
-
-        GatherInputs();
-
-        Look();
-
-        GroundDetection();
-
-        if (_input.magnitude > 0.3f)
+        if (!_dead)
         {
-            anim.SetBool("Walking", true);
-            anim.speed = _input.magnitude + 0.1f;
-        }
-        else anim.SetBool("Walking", false);
+            Move();
 
-        Detection();
+            GatherInputs();
+
+            Look();
+
+            GroundDetection();
+
+            if (_input.magnitude > 0.35f)
+            {
+                anim.SetBool("Walking", true);
+                anim.speed = _input.magnitude -0.1f ;
+            }
+            else anim.SetBool("Walking", false);
+
+            Detection();
+
+            if (_detection <=0) eye.SetActive(false);
+        }
+        if (_dead)
+        {
+            Death();
+        }
     }
 
     void GatherInputs()
@@ -56,12 +68,12 @@ public class Player_Controller : MonoBehaviour
 
     void Move()
     {
-        if (_input.magnitude > 0.3f) rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _Speed * Time.deltaTime);
+        if (_input.magnitude > 0.35f) rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _Speed * Time.deltaTime);
     }
 
     void Look()
     {
-        if (_input != Vector3.zero)
+        if (_input.magnitude > 0.35f)
         {
             var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
 
@@ -95,19 +107,12 @@ public class Player_Controller : MonoBehaviour
             if (_detection < 1) _detection += Time.fixedDeltaTime * _DetectionRate;
             mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
             eye.SetActive(true);
-            once = true;
         }
 
         if (!_detected)
         {
-            if (_detection > 0) _detection -= Time.fixedDeltaTime/2;
+            if (_detection > 0) _detection -= Time.fixedDeltaTime/4;
             mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
-            if (once)
-            {
-                StartCoroutine(DetectionUIDelay());
-                once = false;
-            }
-
         }
 
         if (_detection >= 1)
@@ -116,10 +121,37 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    IEnumerator DetectionUIDelay()
+    IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(2f);
-        eye.SetActive(false);
+        transform.position = respawn.position;
+        once = false;
+        _dead = false;
+        _detection = 0;
+        exclamation.SetActive(false);
     }
 
+    public void Detected()
+    {
+        _detected = true;
+    }
+
+    public void UnDetected()
+    {
+        _detected = false;
+    }
+
+    void Death()
+    {
+        anim.SetBool("Walking", false);
+        eye.SetActive(false);
+        exclamation.SetActive(true);
+
+        if (!once)
+        {
+            StartCoroutine(DeathDelay());
+            fade.SetTrigger("Death");
+        }
+        once = true;
+    }
 }

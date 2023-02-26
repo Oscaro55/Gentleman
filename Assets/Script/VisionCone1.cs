@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class VisionCone1 : MonoBehaviour
 {
-    public Player_Controller player;
+
+    public LightStates state;
     public Material VisionConeMaterial;
     public float VisionRange;
     public float VisionAngle;
@@ -18,7 +19,7 @@ public class VisionCone1 : MonoBehaviour
     //for the ones that you dont understand dont worry, just follow along
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player_Controller>();
+        state = GameObject.Find("States").GetComponent<LightStates>();
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
         VisionConeMesh = new Mesh();
@@ -30,7 +31,7 @@ public class VisionCone1 : MonoBehaviour
     {
         DrawVisionCone();//calling the vision cone function everyframe just so the cone is updated every frame
         if (unDetect > 0) unDetect -= Time.deltaTime;
-        if (unDetect <= 0) player._detected = false;
+        if (unDetect <= 0) state.Detected = false;
     }
 
     void DrawVisionCone()//this method creates the vision cone mesh
@@ -55,7 +56,7 @@ public class VisionCone1 : MonoBehaviour
                 {
                     Vertices[i + 1] = VertForward * VisionRange;
                     print("Detected");
-                    player._detected = true;
+                    state.Detected = true;
                     unDetect = 0.05f;
                 }
                 else
