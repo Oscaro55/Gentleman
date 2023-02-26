@@ -25,11 +25,12 @@ public class Windows : MonoBehaviour
     {
 
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             _player.transform.position = _FinalJumpStatePoint.transform.position;
+            FindObjectOfType<AudioManager>().Play("Whoosh");
             /*if (Input.GetAxis("Fire1") > 0)
             {
                 _player.transform.position = _snapPoint.transform.position;

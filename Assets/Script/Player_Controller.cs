@@ -18,6 +18,7 @@ public class Player_Controller : MonoBehaviour
     public GameObject eye;
     public GameObject exclamation;
     private bool once;
+    private bool once2;
     public Transform respawn;
     public Animator fade;
     // Start is called before the first frame update
@@ -107,12 +108,19 @@ public class Player_Controller : MonoBehaviour
             if (_detection < 1) _detection += Time.fixedDeltaTime * _DetectionRate;
             mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
             eye.SetActive(true);
+            if (!once2)
+            {
+                FindObjectOfType<AudioManager>().Play("BuildUp");
+                once2 = true;
+                print("1");
+            }
         }
 
         if (!_detected)
         {
             if (_detection > 0) _detection -= Time.fixedDeltaTime/4;
             mat.SetFloat("Vector1_1c216f01fd9943e3b33153be3734fd4d", _detection);
+            if (_detection <= 0 && once2) once2 = false;
         }
 
         if (_detection >= 1)
@@ -123,7 +131,7 @@ public class Player_Controller : MonoBehaviour
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.5f);
         transform.position = respawn.position;
         once = false;
         _dead = false;
@@ -151,6 +159,7 @@ public class Player_Controller : MonoBehaviour
         {
             StartCoroutine(DeathDelay());
             fade.SetTrigger("Death");
+            FindObjectOfType<AudioManager>().Play("Alarm");
         }
         once = true;
     }
