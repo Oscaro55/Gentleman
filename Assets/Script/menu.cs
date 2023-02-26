@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class menu : MonoBehaviour
 {
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,19 @@ public class menu : MonoBehaviour
 
     public void start()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        StartCoroutine(StartGame());
+        anim.SetTrigger("Start");
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
     public void Quit()
     {
         Application.Quit();
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(2);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }

@@ -112,7 +112,6 @@ public class Player_Controller : MonoBehaviour
             {
                 FindObjectOfType<AudioManager>().Play("BuildUp");
                 once2 = true;
-                print("1");
             }
         }
 
@@ -131,7 +130,7 @@ public class Player_Controller : MonoBehaviour
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3f);
         transform.position = respawn.position;
         once = false;
         _dead = false;
